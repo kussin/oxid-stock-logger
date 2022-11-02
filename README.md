@@ -9,7 +9,7 @@ This module takes a snapshot of product stock and saves it to a csv file in `/pa
 
 ## Installation
 
-1. Download the latest release from Github
+1. Download the latest release from [Github](https://github.com/kussin/oxid-stock-logger/releases)
 2. Unzip the archive
 3. Copy the content of the folder `src` to the root of your OXID eShop installation
 4. Install cronjob for `php /path/to/oxid/source/bin/stock-logger.php`
