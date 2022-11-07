@@ -16,6 +16,11 @@ This module takes a snapshot of product stock and saves it to a csv file in `/pa
 
 **RECOMMENDATION:** Run the cronjob max. every hour and keep track on the file size.
 
+### Automatic cleanup
+
+Script automatically deletes files older than 10 days. To change this, edit the file `source/bin/StockLogger.php` and 
+change the value of the constant [`LOG_EXPIRATION_TIME`](https://github.com/kussin/oxid-stock-logger/blob/main/source/bin/stock-logger.php#L2).
+
 ## Support
 
 Kussin | eCommerce und Online-Marketing GmbH<br>

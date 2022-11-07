@@ -1,4 +1,5 @@
 <?php
+define('LOG_EXPIRATION_TIME', 8640000); // 10 days
 
 /**
  * Helper for OXID 6 Configuration
@@ -11,7 +12,7 @@ class Oxid_Config_Helper
      */
     public function get($sKey)
     {
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config.inc.php';
+        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '../config.inc.php';
 
         return $this->{$sKey};
     }
@@ -54,6 +55,16 @@ if (!$oDb) {
 
         if (!file_exists($sLogDir)) {
             mkdir($sLogDir, 0777, TRUE);
+        }
+
+        // CLEAN UP LOGS
+        foreach (glob($sLogDir . '*.csv') as $sLog) {
+            if (is_file($sLog)) {
+                if ((time() - filemtime($sLog)) >= LOG_EXPIRATION_TIME) {
+                    // DELETE LOG
+                    unlink($sLog);
+                }
+            }
         }
 
         // WRITE CSV
